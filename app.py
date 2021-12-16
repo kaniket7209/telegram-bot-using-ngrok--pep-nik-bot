@@ -2,7 +2,7 @@ from flask import Flask,request
 import requests
 import sys
 from credentials import bot_token,openweather_api_key
-from features import weatherReport, instagram
+from features import weatherReport, instagram, imdb
 
 key = bot_token
 app = Flask(__name__)
@@ -30,20 +30,39 @@ def index():
             sendmessage(chatid,"Hi there start by typing 'hi' ")
             return "OK"
         if msgtext.lower()=='hi' :
-            sendmessage(chatid,"""Please enter the options as follows
-                                 For weather report just write the city name
-                                 ------Instagram ------ 
-                                 Please enter the username 
+            sendmessage(chatid,"""Please enter the options as follows to access this tools
+
+                🔥------Weather Report------🔥
+
+        For weather report just write the city name followed by 1-
+          
+            ✅ example ->  1-Delhi    
+
+                🔥------Instagram -----------🔥
+
+        For instagram user followers count enter username followed by 2-
+         
+            ✅ example ->  2-shiboy_pep
+
+               🔥 -------IMDB----------  🔥
+
+        Enter Anything that you are familiar with, such as movie title ,album, song, etc.. followed by 3-              
+
+            ✅ example -> 3-Game of Thrones   
                                  """)
             return "OK"
-           
-        if msgtext.lower()=='weather' :
-            sendmessage(chatid,"""Please enter the city name as follows
-                                 Hyderabad   """)
-            return "OK"
-           
-        # weatherReport(chatid, msgtext)
-        instagram(chatid,msgtext)
+        
+        if "1-" in msgtext:
+            text = msgtext.split("1-")[1]
+            weatherReport(chatid, text)
+
+        if "2-" in msgtext:
+            text = msgtext.split("2-")[1]
+            instagram(chatid,text)
+
+        if "3-" in msgtext:
+            text = msgtext.split("3-")[1]
+            imdb(chatid, text)
     
        
     return "Done"

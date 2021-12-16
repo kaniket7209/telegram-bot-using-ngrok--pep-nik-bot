@@ -70,3 +70,20 @@ def instagram(chatid, msgtext):
         sendmessage(chatid,"Please check the username provided")
         return "OK"
     
+
+def imdb(chatid, msgtext):
+    url = "https://imdb8.p.rapidapi.com/title/auto-complete"
+
+    querystring = {"q":"{}".format(msgtext)}
+
+    headers = {
+        'x-rapidapi-host': "imdb8.p.rapidapi.com",
+        'x-rapidapi-key': "47aa2f3fb5mshaf39e9eb1e0edfep12058bjsn5bbbcdfea110"
+        }
+
+    response = requests.request("GET", url, headers=headers, params=querystring)
+
+    print(response.text)
+    data = response.json()
+    
+    sendmessage(chatid, response.text)
