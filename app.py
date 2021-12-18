@@ -69,7 +69,8 @@ def index():
 
 @app.route("/setwebhook")
 def setwebhook():
-    url = heroku_url  #If using ngrok place https link here 
+    # url = "https://xxxx-180-151-17-204.ngrok.io" if using ngrok
+    url = heroku_url
     s = requests.get("https://api.telegram.org/bot{}/setwebhook?url={}".format(bot_token,url))
     if s:
         return "Connection established"
