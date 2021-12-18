@@ -12,6 +12,7 @@ from features import imdb, instagram, weather
 bot_token = os.environ.get("bot_token")
 open_weatherApi_key = os.environ.get("open_weatherApi_key")
 heroku_url = os.environ.get("heroku_url")
+ngrok_url = os.environ.get("ngrok_url")
 
 
 app = Flask(__name__)
@@ -73,7 +74,7 @@ def index():
 @app.route("/setwebhook")
 def setwebhook():
    
-    url = "https://f0b7-180-151-17-204.ngrok.io" 
+    url = ngrok_url
     s = requests.get("https://api.telegram.org/bot{}/setwebhook?url={}".format(bot_token,url))
 
     if s:
