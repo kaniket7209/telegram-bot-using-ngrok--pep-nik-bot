@@ -11,6 +11,7 @@ Jinja2==3.0.3
 MarkupSafe==2.0.1
 numpy==1.21.4
 opencv-python==4.5.4.60
+python-dotenv==0.19.2
 requests==2.26.0
 urllib3==1.26.7
 Werkzeug==2.0.2
