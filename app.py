@@ -6,10 +6,13 @@ load_dotenv()
 
 from features import imdb, instagram, weather
 
+
+
 # Store credentials in .env file  
 bot_token = os.environ.get("bot_token")
 open_weatherApi_key = os.environ.get("open_weatherApi_key")
 heroku_url = os.environ.get("heroku_url")
+
 
 app = Flask(__name__)
 
@@ -69,9 +72,10 @@ def index():
 
 @app.route("/setwebhook")
 def setwebhook():
-    # url = "https://xxxx-180-151-17-204.ngrok.io" if using ngrok
-    url = heroku_url
+   
+    url = "https://f0b7-180-151-17-204.ngrok.io" 
     s = requests.get("https://api.telegram.org/bot{}/setwebhook?url={}".format(bot_token,url))
+
     if s:
         return "Connection established"
     else:
